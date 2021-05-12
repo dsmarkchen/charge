@@ -12,7 +12,7 @@ angular.module('chargeApp')
      
     $scope.opt = localStorage.getItem("myOpt");
     if($scope.opt == null){
-         $scope.opt = "pinsky";
+         $scope.opt = "great";
          localStorage.setItem("myOpt", $scope.opt);
    }
 
@@ -41,17 +41,19 @@ angular.module('chargeApp')
             if (exp.test(item)) {
                 conto = item.replace(/^## /, "");
             }
-            var exp2 = /\d+-\d+/;
+            var exp2 = /(.*),(.*),(.*)/;
             if(exp2.test(item)) {
                 var key = item.match(exp2);
-                var line = item.match(/^\d+/);
-                var res = item.replace(exp2, "");
+                var line = item.match(/^.*,/);
+                var res = item.replace(exp2, "$1");
+                var res2 = item.replace(exp2, "$2");
+                var res3 = item.replace(exp2, "$3");
                 
                 $scope.notes.push( {
                     conto: conto,
-                    line: parseInt(line[0].trim(), 10),
-                    name: key[0],
-                    comment: item 
+                    line: res,
+                    name: res2,
+                    comment: res3
                 })
             }
             
