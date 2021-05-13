@@ -15,26 +15,46 @@
 
 
    <table>
-   <tr ng-repeat="comment in comments track by $index">
-        <td> {{comment.conto}} </td> 
-        <td> {{comment.line}} </td>
-        <td> {{comment.name}} </td>
-        <td> {{comment.comment}} <td>
+   <tr ng-repeat="comment in notes track by $index">
+        <td> {{comment.name}} </td> 
+        <td> {{comment.fast}} </td>
+        <td> {{comment.charge}} </td>
+        <td> {{comment.charge2}} <td>
    </tr>
    </table>
 </div>
 
 
  <div class="form-group" >
-            <label for="addComment">Conto</label>
-             <input ng-model="addConto"> 
-             <label for="addComment">Number </label>
-             <input ng-model="addLine"> <br/>
-             <label for="addComment">Name </label>
-             <input ng-model="addName"> 
-              <label for="addComment">Comment</label>
-             <input ng-model="addNote">
-             <button ng-click="addComment()" class="button button-primary">Add</button> 
+            <label for="checkFast">Fast Move</label>
+             <input ng-model="move_fast"> 
+             <button ng-click="checkFast()" class="button button-primary">Check</button><br> 
+             <button ng-click="getFasts()" class="button button-primary">Get All</button><br> 
+
+          <tt>fast={{move_fast}}  energy={{f_energy}} turns = {{f_turn}}</tt><br/>
+
+  </div>
+
+
+ <div class="form-group" >
+            <label for="checkCharge">Charge Move</label>
+             <input ng-model="move_charge"> 
+             <button ng-click="checkCharge()" class="button button-primary">Check</button><br> 
+             <button ng-click="getCharges()" class="button button-primary">Get All</button><br> 
+
+          <tt>charge={{move_charge}}  energy={{c_energy}} </tt><br/>
+
+  </div>
+
+ <div class="form-group" >
+            <label for="checkPokemon">Pokemon</label>
+             <input ng-model="pokemon"> 
+             <button ng-click="checkPokemon()" class="button button-primary">Check</button><br> 
+             <button ng-click="getPokemon()" class="button button-primary">Get All</button><br> 
+
+          <tt>pokemon={{pokemon}}  fast={{p_fast}} charge={{p_charge}} charge2={{p_charge2}} 
+             count={{p_charge_count}} count2={{p_charge2_count}}  </tt><br/>
+
   </div>
 
 
