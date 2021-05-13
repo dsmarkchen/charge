@@ -25,6 +25,6 @@ bower update bootstrap
 bower install
 npm install
 grunt build
-grunt serve <br>
-grunt buildcontrol:pages <br>
+grunt serve 
+grunt buildcontrol:pages 
 </code>
