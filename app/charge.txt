@@ -5,11 +5,14 @@ Night Slash, 35
 Avalanche,45
 Close Combat, 45
 Sky Attack,45
+Flame Charge, 50
 Power Whip, 50
 Dragon Pulse, 50
+Brave Bird, 55
 Ice Beam, 55
 Psychic, 55
 Stone Edge, 55
 Shadow Ball, 55
+Bulldoze, 60
 Thunder, 60
 

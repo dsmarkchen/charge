@@ -5,3 +5,4 @@ Lick,              3,  1
 Shadow Claw,       8,  2
 Powder Snow,       8,  2
 Ice Shard,         10, 3
+Incinerate,        20, 5

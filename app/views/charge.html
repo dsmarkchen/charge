@@ -11,15 +11,33 @@
       <input type="radio" ng-model="opt" value="master" ng-change="change()">Master
     </label>
     <tt>opt = {{opt}}</tt><br/>
+    <button ng-click="build()" class="button button-primary">Build</button><br> 
   </form>
-
+   
+   <table>
+   <tr ng-repeat="sel in team track by $index">
+        <td> {{sel.name}} </td> 
+        <td> {{sel.fast}}  </td>
+        <td> {{sel.charge}}</td>
+        <td> {{sel.charge2}} <td>
+   </tr>
+   </table>
 
    <table>
-   <tr ng-repeat="comment in notes track by $index">
-        <td> {{comment.name}} </td> 
-        <td> {{comment.fast}} </td>
-        <td> {{comment.charge}} </td>
-        <td> {{comment.charge2}} <td>
+   <tr ng-repeat="sel in notes_table track by $index">
+        <td> {{sel.name}} </td> 
+        <td> {{sel.fast}} {{sel.energy}} </td>
+        <td> {{sel.charge}} {{sel.count}} </td>
+        <td> {{sel.charge2}} {{sel.count2}}<td>
+   </tr>
+  </table> </br>
+
+   <table>
+   <tr ng-repeat="sel in notes track by $index">
+        <td> {{sel.name}} </td> 
+        <td> {{sel.fast}}  </td>
+        <td> {{sel.charge}}</td>
+        <td> {{sel.charge2}} <td>
    </tr>
    </table>
 </div>

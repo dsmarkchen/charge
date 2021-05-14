@@ -26,7 +26,10 @@ angular.module('chargeApp')
    }
    var conto;
    $scope.notes = [];
-   $scope.buildone = function(item, index, useBreaker) {
+   $scope.team = [];
+
+
+   $scope.buildone = function(notes, item, index, useBreaker) {
       var withBreaker = ' ';
       if(useBreaker) {
             withBreaker='<br>';
@@ -49,7 +52,7 @@ angular.module('chargeApp')
                 var res2 = item.replace(exp2, "$2").trim();
                 var res3 = item.replace(exp2, "$3").trim();
                 
-                $scope.notes.push( {
+                notes.push( {
                     name: conto,
                     fast: res,
                     charge: res2,
@@ -58,7 +61,7 @@ angular.module('chargeApp')
             }
             
      }     
-
+        
     };
  
    var url = '/notes.txt';
@@ -67,7 +70,7 @@ angular.module('chargeApp')
         var usingBreaker = true; 
         $scope.rawnotes = rsp.data.split(/\r?\n/) ;
         for(var i = 0; i < $scope.rawnotes.length; i++) {
-           $scope.buildone($scope.rawnotes[i], i, usingBreaker);
+           $scope.buildone($scope.notes, $scope.rawnotes[i], i, usingBreaker);
         } 
 
         localStorage.setItem("myComments", JSON.stringify($scope.notes));
@@ -199,10 +202,60 @@ angular.module('chargeApp')
     return [];
 
  }
+ $scope.build = function() {
+    $scope.notes_table = $scope.buildTable($scope.notes);
 
- 
+ };
 
+ $scope.buildTable = function(notes) {
+    var lst = [];
+    for(var i = 0; i < notes.length; i++) {
+        var data = notes[i];
+            
+            var p_fast = data.fast;
+            var p_charge= data.charge;
+            var p_charge2= data.charge2;
+            var move_fast = p_fast;
+            var f = $scope.getFast(data.fast);
+            var c = $scope.getCharge(data.charge);
+            var c2 = $scope.getCharge(data.charge2);
+            var p_fast_energy = f.energy;
+            var p_charge_count = Math.ceil(c.energy / f.energy);
+            var p_charge2_count = Math.ceil(c2.energy / f.energy);
+            var res = {
+                name: data.name,
+                fast: data.fast,
+                charge: data.charge,
+                charge2: data.charge2,
+                energy: p_fast_energy,
+                count: p_charge_count,
+                count2: p_charge2_count 
+            }   
+            lst.push(res); 
+        
 
+        
+    } 
+    return lst;
+ } ;
+
+  $scope.getTeam = function() {
+
+     var url = '/team.txt';
+     var url2 = 'https://dsmarkchen.github.io/charge/team.txt';
+      $http.get(url).then(function (rsp) {
+        var usingBreaker = true; 
+        $scope.rawnotes = rsp.data.split(/\r?\n/) ;
+        for(var i = 0; i < $scope.rawnotes.length; i++) {
+           $scope.buildone($scope.team, $scope.rawnotes[i], i, usingBreaker);
+        } 
+
+        localStorage.setItem("myTeam", JSON.stringify($scope.team));
+        $scope.team = JSON.parse(localStorage.getItem("myTeam")) || []; 
+     });
+
+  };
+  $scope.getTeam();
 
   $scope.getCharges = function() {
 
@@ -219,6 +272,9 @@ angular.module('chargeApp')
 
 
   };
+
+   $scope.getCharges();
+
    $scope.checkCharge= function() {
     for(var i = 0; i < $scope.charges.length; i++) {
         var data = $scope.charges[i];
