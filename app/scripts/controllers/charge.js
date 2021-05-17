@@ -64,8 +64,8 @@ angular.module('chargeApp')
         
     };
  
-   var url = '/notes.txt';
-   var url2 = 'https://dsmarkchen.github.io/charge/notes.txt';
+   var url = '/notes_' + $scope.opt +  '.txt';
+   var url2 = 'https://dsmarkchen.github.io/charge/notes_'  + $scope.opt + '.txt';
    $http.get(url).then(function (rsp) {
         var usingBreaker = true; 
         $scope.rawnotes = rsp.data.split(/\r?\n/) ;

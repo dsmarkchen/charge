@@ -4,6 +4,7 @@ Power Up Punch, 35
 Night Slash, 35
 Avalanche,45
 Close Combat, 45
+Rock Slide, 45
 Sky Attack,45
 Flame Charge, 50
 Power Whip, 50
@@ -13,6 +14,9 @@ Ice Beam, 55
 Psychic, 55
 Stone Edge, 55
 Shadow Ball, 55
+Play Rough, 60
 Bulldoze, 60
 Thunder, 60
+Earthquake, 65
+Hydro Pump, 75
 
