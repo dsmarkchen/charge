@@ -8,7 +8,7 @@
  * Controller of the chargeApp
  */
 angular.module('chargeApp')
-  .controller('ChargeCtrl', function ($http, $scope, fileReader) {
+  .controller('ChargeCtrl', function ($http, $scope, $q, fileReader) {
      
     $scope.opt = localStorage.getItem("myOpt");
     if($scope.opt == null){
@@ -25,15 +25,15 @@ angular.module('chargeApp')
         return value == null || value === "";
    }
    var conto;
+   $scope.fasts = [];
+   $scope.charges = [];
    $scope.notes = [];
    $scope.team = [];
+   $scope.notes_table = [];
+   $scope.team_table = [];
 
 
-   $scope.buildone = function(notes, item, index, useBreaker) {
-      var withBreaker = ' ';
-      if(useBreaker) {
-            withBreaker='<br>';
-      }
+   $scope.buildone = function(notes, item, index) {
       var name ;
       var line;
       var text;
@@ -63,20 +63,25 @@ angular.module('chargeApp')
      }     
         
     };
- 
-   var url = '/notes_' + $scope.opt +  '.txt';
-   var url2 = 'https://dsmarkchen.github.io/charge/notes_'  + $scope.opt + '.txt';
-   $http.get(url).then(function (rsp) {
-        var usingBreaker = true; 
-        $scope.rawnotes = rsp.data.split(/\r?\n/) ;
-        for(var i = 0; i < $scope.rawnotes.length; i++) {
-           $scope.buildone($scope.notes, $scope.rawnotes[i], i, usingBreaker);
-        } 
 
-        localStorage.setItem("myComments", JSON.stringify($scope.notes));
+  $scope.getAlerts = function() { 
+       var url = '/notes_' + $scope.opt +  '.txt';
+       var url2 = 'https://dsmarkchen.github.io/charge/notes_'  + $scope.opt + '.txt';
+       var prom = $http.get(url).then(function (rsp) {
+            $scope.rawnotes = rsp.data.split(/\r?\n/) ;
+            $scope.notes = [];
+            for(var i = 0; i < $scope.rawnotes.length; i++) {
+               $scope.buildone($scope.notes, $scope.rawnotes[i], i);
+            } 
 
-        $scope.comments = JSON.parse(localStorage.getItem("myComments")) || []; 
-    });
+            localStorage.setItem("myComments", JSON.stringify($scope.notes));
+    
+            $scope.comments = JSON.parse(localStorage.getItem("myComments")) || []; 
+            console.log("getAlerts" +$scope.notes.length);
+        
+        });
+        return prom;
+    }
 
 
 
@@ -203,7 +208,28 @@ angular.module('chargeApp')
 
  }
  $scope.build = function() {
+    let v1 =  $scope.getFasts();
+    let v2 = $scope.getCharges();
+    $q.all([v1, v2]).then(result=> 
+        {
+            console.log("both promises have resolved", result);
+            let t1 = $scope.getTeam();
+            let t2 = $scope.getAlerts();
+            $q.all([t1, t2]).then(res => {
+                console.log("both promises (team and alerts) have resolved", res);
+                $scope.build_alerts();
+                $scope.build_team();
+            });
+            
+
+        });
+ };
+ $scope.build_alerts = function() {
     $scope.notes_table = $scope.buildTable($scope.notes);
+
+ };
+  $scope.build_team = function() {
+    $scope.team_table= $scope.buildTable($scope.team);
 
  };
 
@@ -240,41 +266,41 @@ angular.module('chargeApp')
  } ;
 
   $scope.getTeam = function() {
-
-     var url = '/team.txt';
-     var url2 = 'https://dsmarkchen.github.io/charge/team.txt';
-      $http.get(url).then(function (rsp) {
-        var usingBreaker = true; 
-        $scope.rawnotes = rsp.data.split(/\r?\n/) ;
-        for(var i = 0; i < $scope.rawnotes.length; i++) {
-           $scope.buildone($scope.team, $scope.rawnotes[i], i, usingBreaker);
+     var url = '/team_' + $scope.opt + '.txt';
+     var url2 = 'https://dsmarkchen.github.io/charge/team_' + $scope.opt + '.txt';
+     var prom =  $http.get(url).then(function (rsp) {
+        $scope.rawteam = rsp.data.split(/\r?\n/) ;
+        $scope.team = [] ;
+        for(var i = 0; i < $scope.rawteam.length; i++) {
+           $scope.buildone($scope.team, $scope.rawteam[i], i);
         } 
 
         localStorage.setItem("myTeam", JSON.stringify($scope.team));
         $scope.team = JSON.parse(localStorage.getItem("myTeam")) || []; 
+
+
+        console.log("getTeam " +$scope.team.length);
      });
+     return prom;
 
   };
-  $scope.getTeam();
 
   $scope.getCharges = function() {
 
    var url = '/charge.txt';
    var url2 = 'https://dsmarkchen.github.io/charge/charge.txt';
-   $http.get(url).then(function (rsp) {
-        var usingBreaker = true; 
+   var promise = $http.get(url).then(function (rsp) {
         $scope.charges= rsp.data.split(/\r?\n/) ;
         localStorage.setItem("myCharges", JSON.stringify($scope.charges));
 
         $scope.charges= JSON.parse(localStorage.getItem("myCharges")) || []; 
     });
-
+    return promise;
 
 
   };
 
    $scope.getCharges();
-
    $scope.checkCharge= function() {
     for(var i = 0; i < $scope.charges.length; i++) {
         var data = $scope.charges[i];
@@ -312,14 +338,14 @@ angular.module('chargeApp')
 
    var url = '/fast.txt';
    var url2 = 'https://dsmarkchen.github.io/charge/fast.txt';
-   $http.get(url).then(function (rsp) {
+   var prom =  $http.get(url).then(function (rsp) {
         var usingBreaker = true; 
         $scope.fasts = rsp.data.split(/\r?\n/) ;
         localStorage.setItem("myFasts", JSON.stringify($scope.fasts));
 
         $scope.fasts= JSON.parse(localStorage.getItem("myFasts")) || []; 
     });
-
+    return prom;
 
 
   };
@@ -363,37 +389,29 @@ angular.module('chargeApp')
 
  }    
 
+  $scope.build(); 
 
   $scope.getFile = function () {
-        $scope.progress = 0;
-        $scope.textSrc = '';
-        $scope.totalSymbols = 0;    
-        $scope.totalLHs = 0;
-
-        localStorage.setItem("totalSymbols", $scope.totalSymbols);
-        localStorage.setItem("totalLHs", $scope.totalLHs);
 
         fileReader.readAsText($scope.file, $scope)
-                      .then(function(result) {
-                          $scope.textSrc = result;
-                          $scope.lines= $scope.parseCSV(result, ",");
-                          
-                          $scope.lines.forEach(function (line) { 
-                             var regex = /LH/;
-                             if(regex.test(line)) {
-                                $scope.totalSymbols += line.length - 4;
-                                $scope.totalLHs ++;
-                             }
-                           });
-                          localStorage.setItem("totalSymbols", $scope.totalSymbols);
-                          localStorage.setItem("totalLHs", $scope.totalLHs);
+                      .then(function(rsp) {
 
-                          //$scope.textSrc =angular.fromJson(result);
-                          console.log(typeof(result));
-                          console.log(typeof($scope.textSrc));
-                      });
-    };
+                        $scope.rawteam = rsp.split(/\r?\n/) ;
+                        $scope.team = [] ;
+                        for(var i = 0; i < $scope.rawteam.length; i++) {
+                               $scope.buildone($scope.team, $scope.rawteam[i], i);
+                        } 
+
+                        localStorage.setItem("myTeam", JSON.stringify($scope.team));
+                        $scope.team = JSON.parse(localStorage.getItem("myTeam")) || []; 
+                        $scope.build_team();
+
+
+                        console.log("getTeam " +$scope.team.length);
  
+           });
+    };
+
     $scope.$on("fileProgress", function(e, progress) {
         $scope.progress = progress.loaded / progress.total;
     });

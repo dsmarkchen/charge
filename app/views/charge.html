@@ -12,35 +12,32 @@
     </label>
     <tt>opt = {{opt}}</tt><br/>
     <button ng-click="build()" class="button button-primary">Build</button><br> 
-  </form>
-   
-   <table>
-   <tr ng-repeat="sel in team track by $index">
-        <td> {{sel.name}} </td> 
-        <td> {{sel.fast}}  </td>
-        <td> {{sel.charge}}</td>
-        <td> {{sel.charge2}} <td>
-   </tr>
-   </table>
+  </form> </br>
 
-   <table>
+  <div class="col-sm"><b>Team:</b> </div>
+   
+   <table class="table table-bordered">
+   <tbody>
+   <tr ng-repeat="sel in team_table track by $index">
+        <td style="background-color:lavender;"> {{sel.name}} </td> 
+        <td > {{sel.fast}} {{sel.energy}} </td>
+        <td > {{sel.charge}} {{sel.count}} </td>
+        <td > {{sel.charge2}} {{sel.count2}}</td>
+   </tr>
+  </tbody>
+  </table> </br>
+  
+  <div class="col-sm"><b>Watch List:</b> </div>
+
+   <table class="table table-bordered">
    <tr ng-repeat="sel in notes_table track by $index">
-        <td> {{sel.name}} </td> 
+        <td style="background-color:lavender;"> {{sel.name}} </td> 
         <td> {{sel.fast}} {{sel.energy}} </td>
         <td> {{sel.charge}} {{sel.count}} </td>
-        <td> {{sel.charge2}} {{sel.count2}}<td>
+        <td> {{sel.charge2}} {{sel.count2}}</td>
    </tr>
   </table> </br>
 
-   <table>
-   <tr ng-repeat="sel in notes track by $index">
-        <td> {{sel.name}} </td> 
-        <td> {{sel.fast}}  </td>
-        <td> {{sel.charge}}</td>
-        <td> {{sel.charge2}} <td>
-   </tr>
-   </table>
-</div>
 
 
  <div class="form-group" >
@@ -80,7 +77,8 @@
 
    <form>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-sm"><b>Import Your Team:</b> </div>
+        <div class="col-sm">
            <input type="file" ng-file-select="onFileSelect($files)" class="form-control-file border">
         </div>
       </div>
@@ -114,5 +112,6 @@
    <br/> 
    <b>Progress:</b>
   <progress value="{{progress}}"></progress>
-</div>
 -->
+
+</div>

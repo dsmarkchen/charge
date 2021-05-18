@@ -3,6 +3,7 @@ Ice Punch, 35
 Power Up Punch, 35
 Night Slash, 35
 Avalanche,45
+Wild Charge, 45
 Close Combat, 45
 Rock Slide, 45
 Sky Attack,45
