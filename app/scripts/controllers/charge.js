@@ -208,14 +208,14 @@ angular.module('chargeApp')
 
  }
  $scope.build = function() {
-    let v1 =  $scope.getFasts();
-    let v2 = $scope.getCharges();
-    $q.all([v1, v2]).then(result=> 
+    var v1 =  $scope.getFasts();
+    var v2 = $scope.getCharges();
+    $q.all([v1, v2]).then(function(result) 
         {
             console.log("both promises have resolved", result);
-            let t1 = $scope.getTeam();
-            let t2 = $scope.getAlerts();
-            $q.all([t1, t2]).then(res => {
+            var t1 = $scope.getTeam();
+            var t2 = $scope.getAlerts();
+            $q.all([t1, t2]).then(function(res){
                 console.log("both promises (team and alerts) have resolved", res);
                 $scope.build_alerts();
                 $scope.build_team();
