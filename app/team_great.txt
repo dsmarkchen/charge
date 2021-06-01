@@ -1,14 +1,14 @@
-## mew
+## obstagoon
 
-Shadow Claw, Flame Charge, Wild Charge
+Counter, Night Slash, Cross Chop
 
-## Skarmory
+## Haunter
 
-Air Slash, Sky Attack, Brave Bird
+Shadow Claw, Shadow Punch, Sludge Bomb
 
-## medicham
+## Gengar
 
-Counter, Ice Punch, Psychic
+Shadow Claw, Shadow Punch, Focus Blast
 
 
 

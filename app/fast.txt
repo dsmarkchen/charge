@@ -1,9 +1,11 @@
-Mud Shot,          9,  2
-Counter,           7,  2
 Dragon Breath,     3,  1  
 Lick,              3,  1  
+Charm,             6,  3
+Counter,           7,  2
 Shadow Claw,       8,  2
 Powder Snow,       8,  2
+Smack Down,        8,  3
+Mud Shot,          9,  2
 Air Slash,         9,  3
 Ice Shard,         10, 3
 Bubble,            11, 3

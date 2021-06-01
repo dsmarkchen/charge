@@ -1,12 +1,16 @@
 Body Slam, 35
 Ice Punch, 35 
+Cross Chop, 35
 Power Up Punch, 35
 Night Slash, 35
+Shadow Punch, 35
 Avalanche,45
 Wild Charge, 45
 Close Combat, 45
 Rock Slide, 45
-Sky Attack,45
+Sky Attack, 45
+Foul Play, 45
+Sludge Bomb, 50
 Flame Charge, 50
 Power Whip, 50
 Dragon Pulse, 50
@@ -14,10 +18,13 @@ Brave Bird, 55
 Ice Beam, 55
 Psychic, 55
 Stone Edge, 55
+Flame Thrower, 55
 Shadow Ball, 55
 Play Rough, 60
 Bulldoze, 60
 Thunder, 60
 Earthquake, 65
+Return, 70
+Focus Blast, 75
 Hydro Pump, 75
 

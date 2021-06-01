@@ -1,6 +1,9 @@
 ## Azumarill
 Bubble, Play Rough, Ice Beam
 
+## Sabeleye
+Shadow Claw, Foul Play, Return
+
 ## G Stunfisk
 Mud Shot, Rock Slide, Earthquake
 
@@ -16,7 +19,9 @@ Counter, Body Slam, Bulldoze
 
 Counter, Psychic, Ice Punch
 
+## Bastiodon
 
+Smack Down, Stone Edge, Flame Thrower
 
 
 ## Altaria
