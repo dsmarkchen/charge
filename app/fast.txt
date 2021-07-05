@@ -6,6 +6,8 @@ Shadow Claw,       8,  2
 Powder Snow,       8,  2
 Smack Down,        8,  3
 Mud Shot,          9,  2
+Psycho Cut,        9,  2
+Thunder Shot,      9,  2
 Air Slash,         9,  3
 Ice Shard,         10, 3
 Bubble,            11, 3

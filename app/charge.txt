@@ -1,9 +1,15 @@
+Aqua Tail, 35
 Body Slam, 35
 Ice Punch, 35 
 Cross Chop, 35
+Dragon Claw, 35
 Power Up Punch, 35
 Night Slash, 35
 Shadow Punch, 35
+Superpower, 40
+Crunch, 45
+Psystrike, 45
+Ancient Power, 45
 Avalanche,45
 Wild Charge, 45
 Close Combat, 45
@@ -11,6 +17,7 @@ Rock Slide, 45
 Sky Attack, 45
 Foul Play, 45
 Sludge Bomb, 50
+Grass Knot, 50
 Flame Charge, 50
 Power Whip, 50
 Dragon Pulse, 50
@@ -20,6 +27,7 @@ Psychic, 55
 Stone Edge, 55
 Flame Thrower, 55
 Shadow Ball, 55
+Outrage, 60
 Play Rough, 60
 Bulldoze, 60
 Thunder, 60
