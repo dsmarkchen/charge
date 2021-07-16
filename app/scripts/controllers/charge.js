@@ -8,7 +8,23 @@
  * Controller of the chargeApp
  */
 angular.module('chargeApp')
-  .controller('ChargeCtrl', function ($http, $scope, $q, fileReader) {
+  .controller('ChargeCtrl', function ($http, $scope, $q, ivService, fileReader) {
+
+    var stat = {
+        Atk: 112,
+        Def: 152,
+        Hp: 225
+    };
+    var iv = {
+        Atk: 7,
+        Def: 14,
+        Hp: 13
+    };
+    var cp =   ivService.calculateCP(40, iv, stat);
+
+    console.log("expect 1477: " + cp );
+
+
      
     $scope.opt = localStorage.getItem("myOpt");
     if($scope.opt == null){
@@ -307,9 +323,11 @@ angular.module('chargeApp')
         var exp = new RegExp("^"  +  $scope.move_charge);
         var match = data.match(exp);
         if(match) {
-            var exp2 = /(.*),(.*)/;
+            var exp2 = /(.*),(.*),(.*)/;
             var energy = data.replace(exp2, "$2"); 
+            var power = data.replace(exp2, "$3"); 
             $scope.c_energy = energy;
+            $scope.c_power = power;
             console.log(match);
         }
     } 
@@ -321,11 +339,14 @@ angular.module('chargeApp')
         var exp = new RegExp("^"  +  charge);
         var match = data.match(exp);
         if(match) {
-            var exp2 = /(.*),(.*)/;
+            var exp2 = /(.*),(.*),(.*)/;
             var energy = data.replace(exp2, "$2"); 
+            var power = data.replace(exp2, "$3"); 
             var res = {
                 name: charge,
-                energy: parseInt(energy) };
+                energy: parseInt(energy),
+                power: parseInt(power)
+             };
             return res;
         }
     } 
@@ -356,11 +377,13 @@ angular.module('chargeApp')
         var exp = new RegExp("^"  +  $scope.move_fast );
         var match = data.match(exp);
         if(match) {
-            var exp2 = /(.*),(.*),(.*)/;
+            var exp2 = /(.*),(.*),(.*),(.*)/;
             var energy = data.replace(exp2, "$2").trim(); 
             var turn = data.replace(exp2, "$3").trim() ;
+            var power = data.replace(exp2, "$4").trim() ;
             $scope.f_energy = energy;
             $scope.f_turn = turn;
+            $scope.f_power = power;
             console.log(match);
         }
     } 
@@ -374,13 +397,16 @@ angular.module('chargeApp')
         var exp = new RegExp("^"  +  fast );
         var match = data.match(exp);
         if(match) {
-            var exp2 = /(.*),(.*),(.*)/;
+            var exp2 = /(.*),(.*),(.*),(.*)/;
             var energy = data.replace(exp2, "$2").trim(); 
             var turn = data.replace(exp2, "$3").trim() ;
+            var power = data.replace(exp2, "$4").trim() ;
+
             res = {
              name: fast,
              energy: parseInt(energy),
-             turn: parseInt(turn)
+             turn: parseInt(turn),
+             power: parseInt(power)
             };
             return res;
         }

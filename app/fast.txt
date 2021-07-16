@@ -1,15 +1,17 @@
-Dragon Breath,     3,  1  
-Lick,              3,  1  
-Charm,             6,  3
-Counter,           7,  2
-Shadow Claw,       8,  2
-Powder Snow,       8,  2
-Smack Down,        8,  3
-Mud Shot,          9,  2
-Psycho Cut,        9,  2
-Thunder Shot,      9,  2
-Air Slash,         9,  3
-Ice Shard,         10, 3
-Bubble,            11, 3
-Hex,               12, 3
-Incinerate,        20, 5
+Dragon Breath,     3,  1, 4  
+Lick,              3,  1, 4  
+Charm,             6,  3, 4  
+Counter,           7,  2, 4
+Poison Jab,        7,  2, 4
+Shadow Claw,       8,  2, 4
+Powder Snow,       8,  2, 4
+Smack Down,        8,  3, 4
+Mud Shot,          9,  2, 4
+Psycho Cut,        9,  2, 4
+Thunder Shot,      9,  2, 4
+Air Slash,         9,  3, 4
+Ice Shard,         10, 3, 4
+Bubble,            11, 3, 4
+Hex,               12, 3, 4
+Snarl,             13, 3, 4
+Incinerate,        20, 5, 4

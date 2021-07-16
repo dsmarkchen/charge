@@ -1,0 +1,2 @@
+184, azumarill, 112, 152, 225, water, fairy, bubble, rock smash, hydro pump, ice beam, play rough
+593, jellicent, 159, 178, 225, water, ghost, bubble, hex, Shadow Ball, Ice Beam, Bubble Beam 

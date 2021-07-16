@@ -1,14 +1,18 @@
-## obstagoon
+## Mandibuzz
 
-Counter, Night Slash, Cross Chop
-
-## Haunter
-
-Shadow Claw, Shadow Punch, Sludge Bomb
-
-## Gengar
-
-Shadow Claw, Shadow Punch, Shadow Ball
+Snarl, Aerial Ace, Foul Play
 
 
+## Jellicent
 
+Bubble, Ice Beam, Shadow Ball
+
+
+## Nidoqueen
+
+Poison Jab, Earth Power, Poison Fang
+
+
+## Obstagoon
+
+Counter, Night Slash, Gunk Shot

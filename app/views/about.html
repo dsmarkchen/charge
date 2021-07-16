@@ -5,6 +5,22 @@
     <p ng-if="width > 320" >The device window is: [{{width}}, {{height}}].</p>
     <p> This is about view. </p>
 
+ <div class="form-group" >
+            <label for="calcCP">IV</label> <br/>
+             <input ng-model="name"> <br/>
+             <input ng-model="attack"> <br/>
+             <input ng-model="defense"> <br/>
+             <input ng-model="hp"> <br/>
+             <input ng-model="level"> <br/>
+             <button ng-click="calcCP()" class="button button-primary">Calculate</button><br> 
+
+          <tt>cp={{cp}}  </tt><br/>
+
+  </div>
+
+
+
+
     <ul>
 		<li> charge count</li>
 		<li> damage output</li>
